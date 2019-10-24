@@ -14,30 +14,28 @@
 
     <%= f.label :title, "物件名" %>
     <%= f.text_field :title %>
-
     <%= f.label :charge, "賃料" %>
     <%= f.text_field :charge %>円
-
     <%= f.label :address, "住所" %>
     <%= f.text_field :address %>
-
     <%= f.label :age, "築年数" %>
     <%= f.text_field :age %>年
-
     <%= f.label :memo, "備考" %>
     <%= f.text_area :memo, size: "20x3" %>
 
   </div>
+  <hr>
   <div class="field">
-
+  <% i=0 %>
     <%= f.fields_for :stations do |stations_form| %>
-      <b><%= f.label :stations, "最寄駅" %></b>
+      <b><%= f.label :stations, "最寄駅#{i+1}" %></b>
       <%= stations_form.label :line, "路線名" %>
       <%= stations_form.text_field :line %>
       <%= stations_form.label :name, "駅名" %>
       <%= stations_form.text_field :name %>
       <%= stations_form.label :walk, "徒歩分数" %>
       <%= stations_form.text_field :walk %>分
+      <% i+=1 %>
     <% end %>
   </div>
 

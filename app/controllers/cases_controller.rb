@@ -22,10 +22,8 @@ class CasesController < ApplicationController
     respond_to do |format|
       if @case.save
         format.html { redirect_to @case, notice: 'Case was successfully created.' }
-        format.json { render :show, status: :created, location: @case }
       else
         format.html { render :new }
-        format.json { render json: @case.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -34,10 +32,8 @@ class CasesController < ApplicationController
     respond_to do |format|
       if @case.update(case_params)
         format.html { redirect_to @case, notice: 'Case was successfully updated.' }
-        format.json { render :show, status: :ok, location: @case }
       else
         format.html { render :edit }
-        format.json { render json: @case.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +42,6 @@ class CasesController < ApplicationController
     @case.destroy
     respond_to do |format|
       format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -56,7 +51,6 @@ class CasesController < ApplicationController
     end
 
     def case_params
-
       params.require(:case).permit(
         :title,
         :charge,

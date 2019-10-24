@@ -1,4 +1,15 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_case_path(@case) %> |
-<%= link_to 'Back', cases_path %>
+<div class="field">
+<p>物件名：<%= @case.title %></p>
+<p>賃料：<%= @case.charge %>円</p>
+<p>住所：<%= @case.address %></p>
+<p>築年数：<%= @case.age %></p>
+<p>備考：<%= @case.memo %></p>
+</div>
+
+<hr>
+
+
+
+<%= link_to '編集', edit_case_path(@case) %> |
+<%= link_to '戻る', cases_path %>
