@@ -1,0 +1,46 @@
+<%= form_for @case do |f| %>
+  <% if @case.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @case.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @case.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.label :title, "物件名" %>
+    <%= f.text_field :title %>
+
+    <%= f.label :charge, "賃料" %>
+    <%= f.text_field :charge %>円
+
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+
+    <%= f.label :age, "築年数" %>
+    <%= f.text_field :address %>年
+
+    <%= f.label :memo, "備考" %>
+    <%= f.text_area :memo, size: "20x3" %>
+
+  </div>
+  <div class="field">
+    <%= f.label :station, "最寄駅" %><br />
+    <%= f.fields_for :station do |stations_form| %>
+      <%= stations_form.label :line, "路線名" %>
+      <%= stations_form.text_field :line %>
+      <%= stations_form.label :name, "駅名" %>
+      <%= stations_form.text_field :name %>
+      <%= stations_form.label :walk, "徒歩分数" %>
+      <%= stations_form.text_field :walk %>分
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
