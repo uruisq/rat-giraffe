@@ -15,7 +15,8 @@ class BuildingsController < ApplicationController
   end
 
   def create
-    if Building.create(building_params)
+    @building = Building.new(building_params)
+    if @building.save
       redirect_to buildings_path, notice: "登録が完了しました"
     else
       render 'new'
@@ -34,7 +35,7 @@ class BuildingsController < ApplicationController
   end
 
   def destroy
-  @building.destroy
+    @building.destroy
     redirect_to buildings_url, notice: "登録情報が削除されました"
   end
 
