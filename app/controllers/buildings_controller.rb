@@ -5,28 +5,20 @@ class BuildingsController < ApplicationController
     @buildings = Building.all
   end
 
-  def show
-  end
-
   def new
     @building = Building.new
     2.times { @building.stations.build }
   end
 
   def edit
-    3.times { @building.stations.build }
+    @building.stations.build
   end
 
   def create
-    @building = Building.new(building_params)
-    if params[:back]
-      render :new
+    if Building.create(building_params)
+      redirect_to buildings_path, notice: "登録が完了しました"
     else
-      if @building.save
-        redirect_to buildings_path, notice: "登録が完了しました"
-      else
-        render :new
-      end
+      render 'new'
     end
   end
 
@@ -34,8 +26,11 @@ class BuildingsController < ApplicationController
     if @building.update(building_params)
       redirect_to buildings_path, notice: "登録情報が更新されました"
     else
-      render :edit
+      render 'edit'
     end
+  end
+
+  def show
   end
 
   def destroy
@@ -51,7 +46,7 @@ class BuildingsController < ApplicationController
       :address,
       :age,
       :memo,
-      stations_attributes: [:building_id, :line, :name, :walk]
+      stations_attributes: [:id, :building_id, :line, :name, :walk, :_destroy]
     )
   end
 
