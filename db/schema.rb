@@ -1,6 +1,6 @@
-ActiveRecord::Schema.define(version: 20191024044411) do
+ActiveRecord::Schema.define(version: 20191025023629) do
 
-  create_table "cases", force: :cascade do |t|
+  create_table "buildings", force: :cascade do |t|
     t.string   "title"
     t.integer  "charge"
     t.string   "address"
@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 20191024044411) do
     t.string   "line"
     t.string   "name"
     t.integer  "walk"
-    t.integer  "case_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_stations_on_case_id"
+    t.integer  "building_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["building_id"], name: "index_stations_on_building_id"
   end
 
 end

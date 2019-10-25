@@ -1,7 +1,7 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
 
-  def index
+  def favindex
     @cases = Case.all
   end
 
@@ -18,46 +18,43 @@ class CasesController < ApplicationController
 
   def create
     @case = Case.new(case_params)
-
-    respond_to do |format|
+    if params[:back]
+      render :new
+    else
       if @case.save
-        format.html { redirect_to @case, notice: 'Case was successfully created.' }
+        redirect_to cases_path, notice: "Case was successfully created."
       else
-        format.html { render :new }
+        render :new
       end
     end
   end
 
   def update
-    respond_to do |format|
-      if @case.update(case_params)
-        format.html { redirect_to @case, notice: 'Case was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @case.update(case_params)
+      redirect_to cases_path, notice: "Case was successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
-    @case.destroy
-    respond_to do |format|
-      format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
-    end
+  @case.destroy
+    redirect_to cases_url, notice: "Case was successfully destroyed."
   end
 
   private
-    def set_case
-      @case = Case.find(params[:id])
-    end
+  def case_params
+    params.require(:case).permit(
+      :title,
+      :charge,
+      :address,
+      :age,
+      :memo,
+      stations_attributes: [:case_id, :line, :name, :walk]
+    )
+  end
 
-    def case_params
-      params.require(:case).permit(
-        :title,
-        :charge,
-        :address,
-        :age,
-        :memo,
-        stations_attributes: [:id, :line, :name, :walk]
-      )
-    end
+  def set_case
+    @case = Case.find(params[:id])
+  end
 end

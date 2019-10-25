@@ -28,13 +28,13 @@
   <div class="field">
   <% i=0 %>
     <%= f.fields_for :stations do |stations_form| %>
-      <b><%= f.label :stations, "最寄駅#{i+1}" %></b>
+      <b><%= "最寄駅#{i+1}" %></b>
       <%= stations_form.label :line, "路線名" %>
       <%= stations_form.text_field :line %>
       <%= stations_form.label :name, "駅名" %>
       <%= stations_form.text_field :name %>
       <%= stations_form.label :walk, "徒歩分数" %>
-      <%= stations_form.text_field :walk %>分
+      <%= stations_form.text_field :walk %>分<br>
       <% i+=1 %>
     <% end %>
   </div>
