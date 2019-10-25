@@ -14,6 +14,7 @@ class BuildingsController < ApplicationController
   end
 
   def edit
+    3.times { @building.stations.build }
   end
 
   def create
