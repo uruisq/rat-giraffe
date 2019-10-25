@@ -1,25 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Cases</h1>
+<h1>物件一覧</h1>
 
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
+    <th>物件名</th>
+    <th>賃料</th>
+    <th>住所</th>
+    <th>築年数</th>
+    <th>備考</th>
   </tr>
 
-<% @cases.each do |@case| %>
-  <tr>
-    <td><%= case.title %></td>
-    <td><%= case.address %></td>
+  <% @buildings.each do |building| %>
+    <tr>
+      <td><%= building.title %></td>
+      <td><%= building.charge.to_s(:delimited, delimiter: ',') %>円</td>
+      <td><%= building.address %></td>
+      <td><%= building.age %>年</td>
+      <td><%= building.memo %></td>
 
-    <td><%= link_to '詳細を確認する', case_path(case.id) %></td>
-    <td><%= link_to 'ブログを編集する', edit_case_path(case.id), data:{ confirm: '本当に編集していいですか？' } %></td>
-    <td><%= link_to 'ブログを削除する', case_path(case.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-  </tr>
-<% end %>
+      <td><%= link_to '詳細', building_path(building.id) %></td>
+      <td><%= link_to '編集', edit_building_path(building.id), data:{ confirm: '本当に編集していいですか？' } %></td>
+      <td><%= link_to '削除', building_path(building.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    </tr>
+  <% end %>
+
 </table>
 
 <br>
-
-<%= link_to 'New Case', new_case_path %>
+<%= link_to '物件を登録する', new_building_path %>
+<br>
+<p id="notice"><%= notice %></p>

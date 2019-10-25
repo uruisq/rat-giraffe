@@ -1,16 +1,16 @@
-<%= form_for @case do |f| %>
-  <% if @case.errors.any? %>
+<%= form_for @building do |f| %>
+  <% if @building.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @case.errors.count %>件のエラーがあります。</h2>
+      <h2><%= @building.errors.count %>件のエラーがあります。</h2>
       <ul>
-      <% @case.errors.full_messages.each do |message| %>
+      <% @building.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
 
     <%= f.label :title, "物件名" %>
     <%= f.text_field :title %>
@@ -25,7 +25,7 @@
 
   </div>
   <hr>
-  <div class="field">
+  <div>
   <% i=0 %>
     <%= f.fields_for :stations do |stations_form| %>
       <b><%= "最寄駅#{i+1}" %></b>

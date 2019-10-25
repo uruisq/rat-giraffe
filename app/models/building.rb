@@ -1,5 +1,5 @@
-class Case < ApplicationRecord
-    has_many :stations, inverse_of: :case
+class Building < ApplicationRecord
+    has_many :stations, inverse_of: :building
     accepts_nested_attributes_for :stations, allow_destroy: true
     validates :title, presence: true
     validates :charge, presence: true
