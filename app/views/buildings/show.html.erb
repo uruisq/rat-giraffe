@@ -1,0 +1,21 @@
+<div class="field">
+  <p>物件名：<%= @building.title %></p>
+  <p>賃料：<%= @building.charge.to_s(:delimited, delimiter: ',') %>円</p>
+  <p>住所：<%= @building.address %></p>
+  <p>築年数：<%= @building.age %>年</p>
+  <p>備考：<%= @building.memo %></p>
+</div>
+
+<hr>
+
+<% i=0 %>
+<% @building.stations.each do |station| %>
+  <b><%= "最寄り駅#{i+1}" %></b>
+  <p>路線名：<%= station.line %></p>
+  <p>駅名：<%= station.name %></p>
+  <p>徒歩分数：<%= station.walk %>分</p>
+  <% i+=1 %>
+<% end %>
+
+<%= link_to '編集', edit_building_path(@building) %> |
+<%= link_to '戻る', buildings_path %>
